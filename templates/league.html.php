@@ -24,7 +24,7 @@
 
             <!-- Owned Leagues Table -->
             <?php if (!empty($owned_leagues)): ?>
-                <h3>Leagues You Own</h3>
+                <h3>Leagues I Own</h3>
                 <table border="1">
                     <thead>
                         <tr>
@@ -54,7 +54,7 @@
             <!-- Joined Leagues Table -->
             <?php if ($show_joined && !empty($joined_leagues)): ?>
                 <br></br>
-                <h3>Leagues You Joined</h3>
+                <h3>Leagues I Joined</h3>
                 <table border="1">
                     <thead>
                         <tr>
@@ -91,7 +91,7 @@
             <br></br>
 
             <!-- Draft Table -->
-            <h3>Drafts</h3>
+            <h2>Drafts</h2>
             <br></br>
             <?php if (!empty($drafts)): ?>
                 <table border="1">

@@ -26,8 +26,9 @@
                 <input type="password" id="password" name="password" required>
             </div>
             <button type="submit">Sign Up</button>
+            <br></br>
             <p>Have an account?</p>
-            <a href="index.html"><p>Login here!</p>
+            <a href="/leagueManager/login.php"><p>Login here!</p>
         </form>
     </div>
 </body>
