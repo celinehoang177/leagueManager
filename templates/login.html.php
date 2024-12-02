@@ -1,15 +1,28 @@
 <?php include __DIR__ . '/header.php'; ?>
-<h1>Login</h1>
-<form action="/leagueManager/login.php" method="POST">
-    <input type="text" name="username" placeholder="Username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit">Login</button>
-</form>
-
-<div class="signup-container">
-    <p>Don't have an account?</p>
-    <a href="/leagueManager/signup.php"><button type="button">Signup</button></a>
-</div>
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title></title>
+</head>
+<body>
+    <div class="login">
+        <h2>Login</h2>
+        <form id="loginform" action="/leagueManager/login.php" method="POST">
+            <div class="form">
+                <label for="username">Username</label>
+                <input type="username" id="username" name="username" required>
+            </div>
+            <div class="form">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Login</button>
+            <p>Don't have an account?</p>
+            <a href="/leagueManager/signup.php"><p>Sign up here!</p>
+        </form>
+    </div>
+</body>
 
 <?php if (isset($error)) echo "<p>$error</p>"; ?>
 <?php include __DIR__ . '/footer.php'; ?>

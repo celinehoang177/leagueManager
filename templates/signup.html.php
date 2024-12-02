@@ -1,11 +1,36 @@
 <?php include __DIR__ . '/header.php'; ?>
-<h1>Signup</h1>
-<form action="/leagueManager/signup.php" method="POST">
-    <input type="text" name="fullname" placeholder="Full Name" required>
-    <input type="email" name="email" placeholder="Email" required>
-    <input type="text" name="username" placeholder="Username" required>
-    <input type="password" name="password" placeholder="Password" required>
-    <button type="submit">Signup</button>
-</form>
+<head>
+    <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="style.css">
+	<title></title>
+</head>
+<body>
+    <div class="signup">
+        <h2>Sign Up</h2>
+        <form id="signupform" action="/leagueManager/signup.php" method="POST">
+            <div class="form">
+                <label for="fullname">Full Name</label>
+                <input type="fullname" id="fullname" name="fullname" required>
+            </div>
+            <div class="form">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form">
+                <label for="username">Username</label>
+                <input type="username" id="username" name="username" required>
+            </div>
+            <div class="form">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <button type="submit">Sign Up</button>
+            <p>Have an account?</p>
+            <a href="index.html"><p>Login here!</p>
+        </form>
+    </div>
+</body>
+
 <?php if (isset($error)) echo "<p>$error</p>"; ?>
 <?php include __DIR__ . '/footer.php'; ?>

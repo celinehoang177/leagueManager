@@ -1,30 +1,98 @@
-body {
-    font-family: Arial, sans-serif;
+* {
     margin: 0;
-    padding: 20px;
+    padding: 0;
+    box-sizing: border-box;
 }
-h1 {
-    color: #333;
-}
-form {
-    max-width: 300px;
-    margin: 0 auto;
+body {
+    background-color: #EDF1FF;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
-input, button {
-    margin: 10px 0;
-    padding: 10px;
+.login, .signup {
+    background: #BABEBF;
+    padding: 25px;
+    border-radius: 8px;
+    width: 300px;
+    text-align: center;
+}
+h2 {
+    margin-bottom: 20px;
+}
+.form {
+    margin-bottom: 15px;
+    text-align: left;
+}
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+input[type="username"], input[type="password"], input[type="email"], input[type="fullname"] {
+    width: 95%;
+    padding: 8px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #66676D;
 }
 button {
-    background-color: #4CAF50;
-    color: white;
     border: none;
+    padding: 10px 15px;
+    border-radius: 4px;
     cursor: pointer;
+    width: 100%;
 }
 button:hover {
-    background-color: #45a049;
+    background-color: #66676D;
 }
-p {
-    color: red;
+.navbar {
+    background-color: #e0e0e0;
+    padding: 10px 20px;
+    display: flex;
+    gap: 20px;
+    border-bottom: 1px solid #ccc;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    justify-content: center;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+} 
+.navbar a {
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+.navbar a:hover {
+    text-decoration: underline;
+    border-radius: 4px;
+}
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.menu {
+    display: inline-block;
+    text-decoration: none;
+    color: #fff;
+    font-size: 1.2rem;
+    background-color: #66676D;
+    padding: 15px 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.menu:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
