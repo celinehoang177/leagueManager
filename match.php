@@ -14,7 +14,6 @@ try {
     $stmt = $pdo->prepare("CALL GetMatchByUser(?)");
     $stmt->execute([$user_id]);
     $matches = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    print_r("Matches.");
 } catch (PDOException $e) {
     $error = "Error fetching matches: " . $e->getMessage();
 }

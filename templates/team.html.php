@@ -144,6 +144,18 @@
                 <?php endif; ?>
             </tbody>
         </table>
+
+        <!-- Add Trade Form -->
+        <h3>Add a Trade</h3>
+        <form action="team.php" method="POST">
+            <input type="hidden" name="add_trade" value="1">
+            <input type="number" name="team1_id" placeholder="Team 1 ID" required>
+            <input type="number" name="team2_id" placeholder="Team 2 ID" required>
+            <input type="number" name="player1_id" placeholder="Player 1 ID" required>
+            <input type="number" name="player2_id" placeholder="Player 2 ID" required>
+            <input type="date" name="trade_date" placeholder="Trade Date" required>
+            <button type="submit">Add Trade</button>
+        </form>
     </div>
 </body>
 <?php include __DIR__ . '/footer.php'; ?>
