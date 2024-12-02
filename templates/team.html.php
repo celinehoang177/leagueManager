@@ -7,35 +7,33 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="/leagueManager/dashboard.php">Home</a>
-        <a href="/leagueManager/team.php">Team</a>
-        <a href="/leagueManager/league.php">League</a>
-        <a href="/leagueManager/player.php">Players</a>
-        <a href="/leagueManager/match.php">Match</a>
-        <a href="/leagueManager/logout.php">Logout</a>
+        <div class="left">
+            <a href="/leagueManager/dashboard.php">Home</a>
+        </div>
+        <div class="center">
+            <a href="/leagueManager/team.php">Team</a>
+            <a href="/leagueManager/league.php">League</a>
+            <a href="/leagueManager/player.php">Players</a>
+            <a href="/leagueManager/match.php">Match</a>
+        </div>
+        <div class="right">
+            <a href="/leagueManager/logout.php">Logout</a>
+        </div>
     </div>
 
     <div class="container">
         <div class="team">
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
+            <br></br>
             <h2>My Teams</h2>
-
-            <!-- Error and Success Messages -->
-            <?php if ($error): ?>
-                <p class="error"><?php echo htmlspecialchars($error); ?></p>
-            <?php endif; ?>
-            <?php if ($success): ?>
-                <p class="success"><?php echo htmlspecialchars($success); ?></p>
-            <?php endif; ?>
 
             <!-- Sorting Buttons -->
             <div class="sorting-buttons">
@@ -86,14 +84,22 @@
             <!-- Add Team Form -->
             <h3>Add a Team</h3>
             <form action="team.php" method="POST">
-            <div class="inputs">
-                <input type="text" name="team_name" placeholder="Team Name" required>
-                <input type="number" name="league_id" placeholder="League ID" required>
-            </div>
+                <div class="inputs">
+                    <input type="text" name="team_name" placeholder="Team Name" required>
+                    <input type="number" name="league_id" placeholder="League ID" required>
+                </div>
                 <button type="submit">Add Team</button>
             </form>
-            <br></br>
 
+            <!-- Error and Success Messages -->
+            <?php if ($error): ?>
+                <p class="error"><?php echo htmlspecialchars($error); ?></p>
+            <?php endif; ?>
+            <?php if ($success): ?>
+                <p class="success"><?php echo htmlspecialchars($success); ?></p>
+            <?php endif; ?>
+            <br></br>
+            
             <!-- Waiver Table -->
             <h2>My Waivers</h2>
             <table border="1">
@@ -164,8 +170,7 @@
 
             <!-- Add Trade Form -->
             <h3>Add a Trade</h3>
-            <div class="inputs">
-                <form action="team.php" method="POST">
+            <form action="team.php" method="POST">
                 <div class="inputs">
                     <input type="hidden" name="add_trade" value="1">
                     <input type="number" name="team1_id" placeholder="Team 1 ID" required>
@@ -175,8 +180,7 @@
                     <input type="date" name="trade_date" placeholder="Trade Date" required>
                 </div>
                 <button type="submit">Add Trade</button>
-                </form>
-            </div>
+            </form>
             <br></br>
             <br></br>
         </div>

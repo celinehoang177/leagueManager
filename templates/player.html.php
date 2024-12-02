@@ -7,12 +7,16 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="/leagueManager/dashboard.php">Home</a>
-        <a href="/leagueManager/team.php">Team</a>
-        <a href="/leagueManager/league.php">League</a>
-        <a href="/leagueManager/player.php">Players</a>
-        <a href="/leagueManager/match.php">Match</a>
-        <div class="logout">
+        <div class="left">
+            <a href="/leagueManager/dashboard.php">Home</a>
+        </div>
+        <div class="center">
+            <a href="/leagueManager/team.php">Team</a>
+            <a href="/leagueManager/league.php">League</a>
+            <a href="/leagueManager/player.php">Players</a>
+            <a href="/leagueManager/match.php">Match</a>
+        </div>
+        <div class="right">
             <a href="/leagueManager/logout.php">Logout</a>
         </div>
     </div>

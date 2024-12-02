@@ -53,8 +53,7 @@ button:hover {
 }
 .navbar {
     background-color: #e0e0e0;
-    padding: 10px 20px;
-    display: flex;
+    padding: 15px 20px;
     gap: 20px;
     border-bottom: 1px solid #ccc;
     position: fixed;
@@ -62,9 +61,23 @@ button:hover {
     left: 0;
     right: 0;
     z-index: 1000;
-    justify-content: center;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
 } 
+.left {
+    flex: 1;
+}
+.center {
+    display: flex;
+    justify-content: center;
+    flex: 2;
+}
+.right {
+    flex: 1;
+    text-align: right;
+}
 .navbar a {
     text-decoration: none;
     color: black;
