@@ -149,7 +149,7 @@ DELIMITER ;
 DELIMITER $$
 CREATE PROCEDURE GetMatchByUser(IN p_User_ID INT)
     BEGIN
-    SELECT m.* 
+    SELECT DISTINCT m.* 
     FROM MatchInfo m INNER JOIN Team t
     ON m.Team1_ID = t.Team_ID OR m.Team2_ID = t.Team_ID
     INNER JOIN Users u 
