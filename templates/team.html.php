@@ -16,5 +16,14 @@
             <a href="/leagueManager/logout.php">Logout</a>
         </div>
     </div>
+    <div class="container">
+        <div class="myteam">
+            <h2>My Team</h2>
+            <div class="teamlist">
+                <p>add team tables</p>
+            </div>
+            <a href="addteam.html"><button class="addteam">Add a team</button></a>
+        </div>
+    </div>
 </body>
 <?php include __DIR__ . '/footer.php'; ?>

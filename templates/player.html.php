@@ -7,10 +7,14 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="/leagueManager/myteam.php">My Team</a>
-        <a href="/leagueManager/myleague.php">My League</a>
+        <a href="/leagueManager/dashboard.php">Home</a>
+        <a href="/leagueManager/team.php">Team</a>
+        <a href="/leagueManager/league.php">League</a>
         <a href="/leagueManager/player.php">Players</a>
-        <a href="/leagueManager/trade.php">Trade</a>
+        <a href="/leagueManager/match.php">Match</a>
+        <div class="logout">
+            <a href="/leagueManager/logout.php">Logout</a>
+        </div>
     </div>
 </body>
 <?php include __DIR__ . '/footer.php'; ?>
