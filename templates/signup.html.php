@@ -28,7 +28,7 @@
             <button type="submit">Sign Up</button>
             <br></br>
             <p>Have an account?</p>
-            <a href="/leagueManager/login.php"><p>Login here!</p>
+            <a href="/leagueManager/login.php" style="color: #fff;"><p>Login here!</p>
         </form>
     </div>
 </body>

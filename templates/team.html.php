@@ -33,6 +33,7 @@
             <br></br>
             <br></br>
             <br></br>
+            <br></br>
             <h2>My Teams</h2>
 
             <!-- Sorting Buttons -->
