@@ -152,7 +152,7 @@ CREATE PROCEDURE GetMatchByUser(IN p_User_ID INT)
     SELECT m.* 
     FROM MatchInfo m INNER JOIN Team t
     ON m.Team1_ID = t.Team_ID OR m.Team2_ID = t.Team_ID
-    INNER JOIN User u 
+    INNER JOIN Users u 
     ON t.Owner = u.User_ID
     WHERE u.User_ID = p_User_ID;
 END $$

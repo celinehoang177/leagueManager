@@ -1,5 +1,22 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
+
+include __DIR__ . '/includes/db_connection.php';
 include __DIR__ . '/includes/session_check.php';
-$title = "Match Info";
-include __DIR__ . '/templates/matchinfo.html.php';
-?>
+
+$error = '';
+$success = '';
+
+$user_id = $_SESSION['user_id'];
+
+try {
+    $stmt = $pdo->prepare("CALL GetMatchByUser(?)");
+    $stmt->execute([$user_id]);
+    $matches = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    print_r("Matches.");
+} catch (PDOException $e) {
+    $error = "Error fetching matches: " . $e->getMessage();
+}
+
+include __DIR__ . '/templates/match.html.php';
