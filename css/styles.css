@@ -80,7 +80,6 @@ button:hover {
     flex-wrap: wrap;
     margin-top: 20px;
 }
-
 .menu {
     display: inline-block;
     text-decoration: none;
@@ -95,4 +94,17 @@ button:hover {
 .menu:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+.league {
+    text-align: center;
+}
+table {
+    margin: auto;
+    border-collapse: collapse;
+    width: 75%;
+}
+th, td {
+    padding: 5px 10px;
+    text-align: center;
+    border: 1px solid;
 }
