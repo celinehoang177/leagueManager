@@ -114,18 +114,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $player1_id = $_POST['player1_id'] ?? '';
         $player2_id = $_POST['player2_id'] ?? '';
         $trade_date = $_POST['trade_date'] ?? '';
-    
+
         if (!empty($team1_id) && !empty($team2_id) && !empty($player1_id) && !empty($player2_id) && !empty($trade_date)) {
             try {
                 // Validate Player-Team Relationship
                 $stmt = $pdo->prepare("SELECT Player_ID FROM Player WHERE Player_ID = ? AND Team_ID = ?");
                 $stmt->execute([$player1_id, $team1_id]);
                 $player1_valid = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
                 $stmt = $pdo->prepare("SELECT Player_ID FROM Player WHERE Player_ID = ? AND Team_ID = ?");
                 $stmt->execute([$player2_id, $team2_id]);
                 $player2_valid = $stmt->fetch(PDO::FETCH_ASSOC);
-    
+
                 if (!$player1_valid || !$player2_valid) {
                     $tradeerror = "Invalid player IDs or mismatched team-player relationship.";
                 } else {
@@ -133,18 +133,35 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $stmt = $pdo->query("SELECT IFNULL(MAX(Trade_ID), 0) + 1 AS NextTradeID FROM Trade");
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
                     $next_trade_id = $result['NextTradeID'];
-    
+
                     $stmt = $pdo->prepare("
                         INSERT INTO Trade (Trade_ID, Team1_ID, Team2_ID, TradedPlayer1_ID, TradedPlayer2_ID, TradeDate)
                         VALUES (?, ?, ?, ?, ?, ?)
                     ");
                     $stmt->execute([$next_trade_id, $team1_id, $team2_id, $player1_id, $player2_id, $trade_date]);
-    
+
                     // Update Player Table
                     $stmt = $pdo->prepare("UPDATE Player SET Team_ID = ? WHERE Player_ID = ?");
                     $stmt->execute([$team2_id, $player1_id]); // Player1 moves to Team2
                     $stmt->execute([$team1_id, $player2_id]); // Player2 moves to Team1
-    
+
+                    // Refetch Updated Trades
+                    if ($is_admin) {
+                        // Admin sees all trades
+                        $stmt = $pdo->query("SELECT * FROM Trade");
+                    } else {
+                        // Regular user sees trades involving their teams
+                        $stmt = $pdo->prepare("
+                            SELECT Tr.*
+                            FROM Trade Tr
+                            JOIN Team T1 ON Tr.Team1_ID = T1.Team_ID
+                            JOIN Team T2 ON Tr.Team2_ID = T2.Team_ID
+                            WHERE T1.Owner = ? OR T2.Owner = ?
+                        ");
+                        $stmt->execute([$user_id, $user_id]);
+                    }
+                    $trades = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
                     $tradesuccess = "Trade added successfully!";
                 }
             } catch (PDOException $e) {
@@ -154,7 +171,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $tradeerror = "All fields are required to add a trade.";
         }
     }
-    
 }
 
 include __DIR__ . '/templates/team.html.php';
