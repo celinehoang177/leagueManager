@@ -167,7 +167,7 @@
             <br>
 
             <!-- Add Trade Form -->
-            <?php if ($_SESSION['role'] == 'admin'): ?>
+            <?php if ($_SESSION['role'] == 'user'): ?>
                 <h3>Add a Trade</h3>
                 <form action="team.php" method="POST">
                     <div class="inputs">

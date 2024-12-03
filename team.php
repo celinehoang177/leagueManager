@@ -117,7 +117,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
         if (!empty($team1_id) && !empty($team2_id) && !empty($player1_id) && !empty($player2_id) && !empty($trade_date)) {
             try {
-                // Step 1: Validate Player-Team Relationship
+                // Validate Player-Team Relationship
                 $stmt = $pdo->prepare("SELECT Player_ID FROM Player WHERE Player_ID = ? AND Team_ID = ?");
                 $stmt->execute([$player1_id, $team1_id]);
                 $player1_valid = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -129,7 +129,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 if (!$player1_valid || !$player2_valid) {
                     $tradeerror = "Invalid player IDs or mismatched team-player relationship.";
                 } else {
-                    // Step 2: Insert Trade into the Trade Table
+                    // Insert Trade into the Trade Table
                     $stmt = $pdo->query("SELECT IFNULL(MAX(Trade_ID), 0) + 1 AS NextTradeID FROM Trade");
                     $result = $stmt->fetch(PDO::FETCH_ASSOC);
                     $next_trade_id = $result['NextTradeID'];
@@ -140,7 +140,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     ");
                     $stmt->execute([$next_trade_id, $team1_id, $team2_id, $player1_id, $player2_id, $trade_date]);
     
-                    // Step 3: Update Player Table
+                    // Update Player Table
                     $stmt = $pdo->prepare("UPDATE Player SET Team_ID = ? WHERE Player_ID = ?");
                     $stmt->execute([$team2_id, $player1_id]); // Player1 moves to Team2
                     $stmt->execute([$team1_id, $player2_id]); // Player2 moves to Team1
