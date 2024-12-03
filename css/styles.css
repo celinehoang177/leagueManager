@@ -142,7 +142,7 @@ button:hover {
     align-items: center; 
     justify-content: flex-start; 
     position: relative;
-    top: 85px; 
+    top: 95px; 
 }
 .dashboard {
     display: flex;

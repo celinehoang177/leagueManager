@@ -9,7 +9,7 @@
     <div class="homecontainer">
         <div>
             <div class="dashboard">
-                <h1 style="color: #fff;">Welcome, <?php echo htmlspecialchars($_SESSION['fullname']); ?>!</h1>
+                <h1 style="color: #fff;"> (Admin) Welcome, <?php echo htmlspecialchars($_SESSION['fullname']); ?>!</h1>
                 <a href="/leagueManager/logout.php" style="color: #fff;">Logout</a>
             </div>
             <div class="dashboard">
