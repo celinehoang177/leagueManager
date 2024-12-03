@@ -27,7 +27,7 @@
     <div class="container">
         <div class="user">
             <br></br>
-            <h2>User Accounts</h2>
+            <h2 class="titlename">User Accounts</h2>
 
             <!-- Error Message -->
             <?php if (!empty($error)): ?>

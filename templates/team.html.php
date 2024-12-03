@@ -26,8 +26,11 @@
 
     <div class="container">
         <div class="team">
-            <br>
-            <h2><?php echo $_SESSION['role'] === 'admin' ? 'All Teams' : 'My Teams'; ?></h2>
+            <br></br>
+            <br></br>
+            <h2 class="titlename">
+                <?php echo $_SESSION['role'] === 'admin' ? 'All Teams' : 'My Teams'; ?>
+            </h2>
 
             <!-- Sorting Buttons -->
             <div>

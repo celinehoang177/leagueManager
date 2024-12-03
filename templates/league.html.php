@@ -27,7 +27,8 @@
     <div class="container">
         <div class="league">
             <br></br>
-            <h2>Leagues</h2>
+            <br></br>
+            <h2 class="titlename">Leagues</h2>
 
             <?php if ($_SESSION['role'] === 'admin'): ?>
                 <!-- Admin View -->

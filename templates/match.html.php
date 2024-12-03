@@ -27,7 +27,8 @@
     <div class="container">
         <div class="match">
             <br></br>
-            <h2>
+            <br></br>
+            <h2 class="titlename">
                 <?php echo ($_SESSION['role'] === 'admin') ? 'All Matches' : 'My Matches'; ?>
             </h2>
 

@@ -26,8 +26,11 @@
 
     <div class="container">
         <div class="player">
-            <br>
-            <h2><?php echo $_SESSION['role'] === 'admin' ? 'All Players' : 'My Players'; ?></h2>
+            <br></br>
+            <br></br>
+            <h2 class="titlename">
+                <?php echo $_SESSION['role'] === 'admin' ? 'All Players' : 'My Players'; ?>
+            </h2>
 
             <!-- Search/See All Form -->
             <form action="<?php echo $search_mode ? 'player.php' : 'player.php?search_mode=1'; ?>" method="POST" style="margin-bottom: 20px;">
