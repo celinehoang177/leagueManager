@@ -93,11 +93,11 @@
             </form>
 
             <!-- Error and Success Messages -->
-            <?php if ($error): ?>
-                <p class="error"><?php echo htmlspecialchars($error); ?></p>
+            <?php if ($teamerror): ?>
+                <p class="error"><?php echo htmlspecialchars($teamerror); ?></p>
             <?php endif; ?>
-            <?php if ($success): ?>
-                <p class="success"><?php echo htmlspecialchars($success); ?></p>
+            <?php if ($teamsuccess): ?>
+                <p class="success"><?php echo htmlspecialchars($teamsuccess); ?></p>
             <?php endif; ?>
             <br></br>
             
@@ -182,6 +182,14 @@
                 </div>
                 <button type="submit">Add Trade</button>
             </form>
+            <!-- Error and Success Messages -->
+            <?php if ($tradeerror): ?>
+                <p class="error"><?php echo htmlspecialchars($tradeerror); ?></p>
+            <?php endif; ?>
+            <?php if ($tradesuccess): ?>
+                <p class="success"><?php echo htmlspecialchars($tradesuccess); ?></p>
+            <?php endif; ?>
+            <br></br>
             <br></br>
             <br></br>
         </div>
