@@ -7,6 +7,10 @@ include __DIR__ . '/includes/session_check.php';
 
 $error = '';
 $success = '';
+$teamerror = '';
+$teamsuccess = '';
+$tradeerror = '';
+$tradesuccess = '';
 
 // Determine sorting order and column
 $sort_column = isset($_GET['sort_by']) && in_array($_GET['sort_by'], ['TotalPoints', 'Team_ID']) ? $_GET['sort_by'] : 'TotalPoints';
@@ -19,7 +23,7 @@ try {
     $stmt->execute([$user_id]);
     $teams = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    $error = "Error fetching teams: " . $e->getMessage();
+    $teamerror = "Error fetching teams: " . $e->getMessage();
 }
 
 // Fetch waivers for the user's teams
@@ -48,7 +52,7 @@ try {
     $stmt->execute([$user_id, $user_id]);
     $trades = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (PDOException $e) {
-    $error = "Error fetching trades: " . $e->getMessage();
+    $tradeerror = "Error fetching trades: " . $e->getMessage();
 }
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -62,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Call the stored procedure to add the team
                 $stmt = $pdo->prepare("CALL AddTeam(?, ?, ?)");
                 $stmt->execute([$team_name, $user_id, $league_id]);
-                $success = "Team added successfully!";
+                $teamsuccess = "Team added successfully!";
 
                 // Refresh the team list
                 $stmt = $pdo->prepare("SELECT * FROM Team WHERE Owner = ? ORDER BY $sort_column $sort_order");
@@ -70,13 +74,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $teams = $stmt->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
                 if ($e->getCode() == 23000) {
-                    $error = "The specified League ID does not exist.";
+                    $teamerror = "The specified League ID does not exist.";
                 } else {
-                    $error = "Error adding team: " . $e->getMessage();
+                    $teamerror = "Error adding team: " . $e->getMessage();
                 }
             }
         } else {
-            $error = "Team name and league are required.";
+            $teamerror = "Team name and league are required.";
         }
     }
 
@@ -101,7 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     VALUES (?, ?, ?, ?, ?, ?)
                 ");
                 $stmt->execute([$next_trade_id, $team1_id, $team2_id, $player1_id, $player2_id, $trade_date]);
-                $success = "Trade added successfully!";
+                $tradesuccess = "Trade added successfully!";
 
                 // Refresh the trades table
                 $stmt = $pdo->prepare("
@@ -114,10 +118,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 $stmt->execute([$user_id, $user_id]);
                 $trades = $stmt->fetchAll(PDO::FETCH_ASSOC);
             } catch (PDOException $e) {
-                $error = "Error adding trade: " . $e->getMessage();
+                $tradeerror = "Error adding trade: " . $e->getMessage();
             }
         } else {
-            $error = "All fields are required to add a trade.";
+            $tradeerror = "All fields are required to add a trade.";
         }
     }
 }

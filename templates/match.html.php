@@ -7,68 +7,76 @@
 </head>
 <body>
     <div class="navbar">
-        <a href="/leagueManager/dashboard.php">Home</a>
-        <a href="/leagueManager/team.php">Team</a>
-        <a href="/leagueManager/league.php">League</a>
-        <a href="/leagueManager/player.php">Players</a>
-        <a href="/leagueManager/match.php">Match</a>
-        <a href="/leagueManager/logout.php">Logout</a>
+        <div class="left">
+            <a href="/leagueManager/dashboard.php">Home</a>
+        </div>
+        <div class="center">
+            <a href="/leagueManager/team.php">Team</a>
+            <a href="/leagueManager/league.php">League</a>
+            <a href="/leagueManager/player.php">Players</a>
+            <a href="/leagueManager/match.php">Match</a>
+        </div>
+        <div class="right">
+            <a href="/leagueManager/logout.php">Logout</a>
+        </div>
     </div>
 
     <div class="container">
-        <h2>My Matches</h2>
+        <div class="match">
+            <h2>My Matches</h2>
 
-        <!-- Error and Success Messages -->
-        <?php if ($error): ?>
-            <p class="error"><?php echo htmlspecialchars($error); ?></p>
-        <?php endif; ?>
-        <?php if ($success): ?>
-            <p class="success"><?php echo htmlspecialchars($success); ?></p>
-        <?php endif; ?>
+            <!-- Error and Success Messages -->
+            <?php if ($error): ?>
+                <p class="error"><?php echo htmlspecialchars($error); ?></p>
+            <?php endif; ?>
+            <?php if ($success): ?>
+                <p class="success"><?php echo htmlspecialchars($success); ?></p>
+            <?php endif; ?>
 
-        <!-- Search Form or See All Button -->
-        <?php if (!$search_mode): ?>
-            <form action="match.php?search_mode=1" method="POST" style="margin-bottom: 20px;">
-                <input type="number" name="search_team_id" placeholder="Enter Team ID to search" required>
-                <button type="submit">Search</button>
-            </form>
-        <?php else: ?>
-            <form action="match.php" method="GET" style="margin-bottom: 20px;">
-                <button type="submit">See All Matches</button>
-            </form>
-        <?php endif; ?>
+            <!-- Search Form or See All Button -->
+            <?php if (!$search_mode): ?>
+                <form action="match.php?search_mode=1" method="POST" style="margin-bottom: 20px;">
+                    <input type="number" name="search_team_id" placeholder="Enter Team ID to search" required>
+                    <button type="submit">Search</button>
+                </form>
+            <?php else: ?>
+                <form action="match.php" method="GET" style="margin-bottom: 20px;">
+                    <button type="submit">See All Matches</button>
+                </form>
+            <?php endif; ?>
 
-        <!-- Match Table -->
-        <table border="1">
-            <thead>
-                <tr>
-                    <th>Match ID</th>
-                    <th>Team 1 ID</th>
-                    <th>Team 2 ID</th>
-                    <th>Match Date</th>
-                    <th>Final Score</th>
-                    <th>Winner</th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php if (!empty($matches)): ?>
-                    <?php foreach ($matches as $match): ?>
-                        <tr>
-                            <td><?php echo htmlspecialchars($match['Match_ID']); ?></td>
-                            <td><?php echo htmlspecialchars($match['Team1_ID']); ?></td>
-                            <td><?php echo htmlspecialchars($match['Team2_ID']); ?></td>
-                            <td><?php echo htmlspecialchars($match['MatchDate']); ?></td>
-                            <td><?php echo htmlspecialchars($match['FinalScore']); ?></td>
-                            <td><?php echo htmlspecialchars($match['Winner']); ?></td>
-                        </tr>
-                    <?php endforeach; ?>
-                <?php else: ?>
+            <!-- Match Table -->
+            <table border="1">
+                <thead>
                     <tr>
-                        <td colspan="6">No matches found.</td>
+                        <th>Match ID</th>
+                        <th>Team 1 ID</th>
+                        <th>Team 2 ID</th>
+                        <th>Match Date</th>
+                        <th>Final Score</th>
+                        <th>Winner</th>
                     </tr>
-                <?php endif; ?>
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    <?php if (!empty($matches)): ?>
+                        <?php foreach ($matches as $match): ?>
+                            <tr>
+                                <td><?php echo htmlspecialchars($match['Match_ID']); ?></td>
+                                <td><?php echo htmlspecialchars($match['Team1_ID']); ?></td>
+                                <td><?php echo htmlspecialchars($match['Team2_ID']); ?></td>
+                                <td><?php echo htmlspecialchars($match['MatchDate']); ?></td>
+                                <td><?php echo htmlspecialchars($match['FinalScore']); ?></td>
+                                <td><?php echo htmlspecialchars($match['Winner']); ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
+                        <tr>
+                            <td colspan="6">No matches found.</td>
+                        </tr>
+                    <?php endif; ?>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 <?php include __DIR__ . '/footer.php'; ?>

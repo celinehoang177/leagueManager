@@ -127,7 +127,7 @@ button:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
-.team, .league, .match {
+.team, .league, .match, .player {
     text-align: center;
 
 }
@@ -140,7 +140,7 @@ table {
     width: 100%;
 }
 th, td {
-    padding: 5px;
+    padding: 7px;
     text-align: center;
     border: 1px solid;
 }
