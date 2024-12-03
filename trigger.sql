@@ -164,3 +164,25 @@ END $$
 DELIMITER ;
 
 CALL GetLeagueFromUser(1);
+
+DELIMITER $$
+
+CREATE PROCEDURE GetStatsFromUser(IN p_User_ID INT)
+BEGIN
+    SELECT 
+        ps.Statistic_ID, 
+        ps.Player_ID, 
+        ps.GameDate, 
+        ps.PerformanceStats, 
+        ps.InjuryStatus
+    FROM 
+        Player_Statistic ps
+    INNER JOIN 
+        Player p ON ps.Player_ID = p.Player_ID
+    INNER JOIN 
+        Team t ON p.Team_ID = t.Team_ID
+    WHERE 
+        t.Owner = p_User_ID;
+END $$
+
+DELIMITER ;
