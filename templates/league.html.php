@@ -86,6 +86,27 @@
                     <p class="error"><?php echo htmlspecialchars($error); ?></p>
                 <?php endif; ?>
 
+                <!-- Create New League Form -->
+                <?php if ($user_role !== 'admin'): ?>
+                    <h3>Create a New League</h3>
+                    <form action="league.php" method="POST">
+                        <div class="inputs">
+                            <input type="text" name="league_name" placeholder="League Name" required>
+                            <input type="text" name="league_type" placeholder="League Type" required>
+                            <input type="number" name="max_teams" placeholder="Max Teams" min="2" required>
+                            <input type="date" name="draft_date" placeholder="Draft Date" required>
+                        </div>
+                        <button type="submit">Create League</button>
+                    </form>
+                    <?php if ($error): ?>
+                        <p class="error"><?php echo htmlspecialchars($error); ?></p>
+                    <?php endif; ?>
+                    <?php if ($success): ?>
+                        <p class="success"><?php echo htmlspecialchars($success);?></p>
+                    <?php endif; ?>
+                    <br>
+                <?php endif; ?>
+
                 <h3>Leagues I Own</h3>
                 <?php if (!empty($owned_leagues)): ?>
                     <table border="1">

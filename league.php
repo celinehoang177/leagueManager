@@ -60,4 +60,37 @@ try {
     $error = "Error: " . $e->getMessage();
 }
 
+// Handle form submission for creating a new league
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['league_name'], $_POST['league_type'], $_POST['max_teams'], $_POST['draft_date'])) {
+    $league_name = $_POST['league_name'];
+    $league_type = $_POST['league_type'];
+    $max_teams = (int)$_POST['max_teams'];
+    $draft_date = $_POST['draft_date'];
+
+    if (!empty($league_name) && !empty($league_type) && $max_teams > 0 && !empty($draft_date)) {
+        try {
+            // Fetch the current maximum League_ID
+            $stmt = $pdo->query("SELECT IFNULL(MAX(League_ID), 0) + 1 AS NextLeagueID FROM League");
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            $next_league_id = $result['NextLeagueID'];
+
+            // Insert the new league with the manually incremented League_ID
+            $stmt = $pdo->prepare("INSERT INTO League (League_ID, LeagueName, LeagueType, MaxTeams, DraftDate, User_ID) VALUES (?, ?, ?, ?, ?, ?)");
+            $stmt->execute([$next_league_id, $league_name, $league_type, $max_teams, $draft_date, $user_id]);
+
+            $success = "League created successfully!";
+            
+            // Refresh the owned leagues list
+            $stmt = $pdo->prepare("CALL GetLeagueFromUser(?)");
+            $stmt->execute([$user_id]);
+            $owned_leagues = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            $error = "Error creating league: " . $e->getMessage();
+        }
+    } else {
+        $error = "All fields are required to create a league.";
+    }
+}
+
+
 include __DIR__ . '/templates/league.html.php';
