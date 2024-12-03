@@ -17,9 +17,11 @@ body {
     scroll-behavior: smooth;
 }
 .bg {
-    background-image: url('https://basketballforever.com/wp-content/uploads/2021/09/Prime-players-scaled.jpg');
+    background-image: url('../templates/bg.jpg');
     background-size: cover;
     background-repeat: no-repeat;
+    width: 100%;
+    height: 90vh;
 }
 .login, .signup {
     background: #1d428a;
@@ -134,13 +136,20 @@ button:hover {
     margin-top: 50px;
     padding: 20px;
 }
+.homecontainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    justify-content: flex-start; 
+    position: relative;
+    top: 85px; 
+}
 .dashboard {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
-    /* flex-wrap: wrap; */
-    margin-top: 10px;
+    margin-top: 5px;
     padding-bottom: 20px;
 }
 .sorting-buttons {

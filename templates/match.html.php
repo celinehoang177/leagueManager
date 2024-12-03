@@ -13,7 +13,7 @@
         <div class="center">
             <a href="/leagueManager/team.php">Team</a>
             <a href="/leagueManager/league.php">League</a>
-            <a href="/leagueManager/player.php">Players</a>
+            <a href="/leagueManager/player.php">Player</a>
             <a href="/leagueManager/match.php">Match</a>
         </div>
         <div class="right">

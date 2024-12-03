@@ -6,16 +6,16 @@
 	<title></title>
 </head>
 <body class="bg">
-    <div class="container">
+    <div class="homecontainer">
         <div>
             <div class="dashboard">
-                <h1>Welcome, <?php echo htmlspecialchars($_SESSION['fullname']); ?>!</h1>
-                <a href="/leagueManager/logout.php">Logout</a>
+                <h1 style="color: #fff;">Welcome, <?php echo htmlspecialchars($_SESSION['fullname']); ?>!</h1>
+                <a href="/leagueManager/logout.php" style="color: #fff;">Logout</a>
             </div>
             <div class="dashboard">
                 <a href="/leagueManager/team.php" class="menu">Team</a>
                 <a href="/leagueManager/league.php" class="menu">League</a>
-                <a href="/leagueManager/player.php" class="menu">Players</a>
+                <a href="/leagueManager/player.php" class="menu">Player</a>
                 <a href="/leagueManager/match.php" class="menu">Match</a>
             </div>
         </div>
