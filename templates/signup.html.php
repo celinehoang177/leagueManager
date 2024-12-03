@@ -6,30 +6,32 @@
 	<title></title>
 </head>
 <body>
-    <div class="signup">
-        <h2>Sign Up</h2>
-        <form id="signupform" action="/leagueManager/signup.php" method="POST">
-            <div class="form">
-                <label for="fullname">Full Name</label>
-                <input type="fullname" id="fullname" name="fullname" required>
-            </div>
-            <div class="form">
-                <label for="email">Email Address</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form">
-                <label for="username">Username</label>
-                <input type="username" id="username" name="username" required>
-            </div>
-            <div class="form">
-                <label for="password">Password</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <button type="submit">Sign Up</button>
-            <br></br>
-            <p>Have an account?</p>
-            <a href="/leagueManager/login.php" style="color: #fff;"><p>Login here!</p>
-        </form>
+    <div class="container">
+        <div class="signup">
+            <h2>Sign Up</h2>
+            <form id="signupform" action="/leagueManager/signup.php" method="POST">
+                <div class="form">
+                    <label for="fullname">Full Name</label>
+                    <input type="fullname" id="fullname" name="fullname" required>
+                </div>
+                <div class="form">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form">
+                    <label for="username">Username</label>
+                    <input type="username" id="username" name="username" required>
+                </div>
+                <div class="form">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit">Sign Up</button>
+                <br></br>
+                <p>Have an account?</p>
+                <a href="/leagueManager/login.php" style="color: #fff;"><p>Login here!</p>
+            </form>
+        </div>
     </div>
 </body>
 
