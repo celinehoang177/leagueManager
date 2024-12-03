@@ -23,6 +23,7 @@
 
     <div class="container">
         <div class="league">
+            <br></br>
             <h2>My Leagues</h2>
             <?php if ($error): ?>
                 <p class="error"><?php echo htmlspecialchars($error); ?></p>
