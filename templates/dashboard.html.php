@@ -13,13 +13,13 @@
                 <a href="/leagueManager/logout.php" style="color: #fff;">Logout</a>
             </div>
             <div class="dashboard">
+                <?php if ($_SESSION['role'] === 'admin'): ?>
+                    <a href="/leagueManager/users.php" class="menu">Users</a>
+                <?php endif; ?>
                 <a href="/leagueManager/team.php" class="menu">Team</a>
                 <a href="/leagueManager/league.php" class="menu">League</a>
                 <a href="/leagueManager/player.php" class="menu">Player</a>
                 <a href="/leagueManager/match.php" class="menu">Match</a>
-                <?php if ($_SESSION['role'] === 'admin'): ?>
-                    <a href="/leagueManager/users.php" class="menu">Users</a>
-                <?php endif; ?>
             </div>
         </div>
     </div>

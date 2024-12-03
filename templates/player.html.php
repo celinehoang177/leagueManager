@@ -11,6 +11,9 @@
             <a href="/leagueManager/dashboard.php">Home</a>
         </div>
         <div class="center">
+            <?php if ($_SESSION['role'] === 'admin'): ?>
+                <a href="/leagueManager/users.php">Users</a>
+            <?php endif; ?>
             <a href="/leagueManager/team.php">Team</a>
             <a href="/leagueManager/league.php">League</a>
             <a href="/leagueManager/player.php">Player</a>

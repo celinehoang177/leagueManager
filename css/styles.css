@@ -131,7 +131,7 @@ button:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
-.team, .league, .match, .player {
+.team, .league, .match, .player, .user {
     text-align: center;
     margin-top: 50px;
     padding: 20px;
