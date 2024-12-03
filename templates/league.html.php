@@ -35,7 +35,7 @@
                 <h3>All Leagues</h3>
                 <table border="1">
                     <thead>
-                        <tr>
+                        <tr class="tablebg">
                             <th>League ID</th>
                             <th>League Name</th>
                             <th>Type</th>
@@ -60,7 +60,7 @@
                 <h3>All Drafts</h3>
                 <table border="1">
                     <thead>
-                        <tr>
+                        <tr class="tablebg">
                             <th>Draft ID</th>
                             <th>League ID</th>
                             <th>Draft Date</th>

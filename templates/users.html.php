@@ -37,7 +37,7 @@
             <!-- User Table -->
             <table border="1">
                 <thead>
-                    <tr>
+                    <tr class="tablebg">
                         <th>User ID</th>
                         <th>Full Name</th>
                         <th>Email</th>
