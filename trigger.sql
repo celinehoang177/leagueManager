@@ -28,40 +28,6 @@ DELIMITER ;
 CALL AddUser('usertest','user@gmail.com','123456','User Test');
 
 
--- add match 
-
-
-DELIMITER @@
-
-CREATE TRIGGER BeforeMatchInsert
-BEFORE INSERT ON `Match`
-FOR EACH ROW
-BEGIN
-    DECLARE i INT DEFAULT 1;
-    DECLARE randomScore INT;
-    DECLARE randomAssists INT;
-    DECLARE next_ID NUMERIC(10,0);
-    SELECT IFNULL(MAX(Statistic_ID), 0) INTO next_ID FROM Player_Statistic;
-
-    -- Loop to insert 10 random rows into PlayerStatistics for the new match
-    WHILE i <= 10 DO
-        -- Generate random data for PlayerID, Score, and Assists
-        SET randomScore = FLOOR(RAND() * 8);           -- Random Score between 0 and 30
-        SET randomAssists = FLOOR(RAND() * 3);         -- Random Assists between 0 and 10
-        SET next_ID = next_ID + 1;
-
-        -- Insert a row into PlayerStatistics
-        INSERT INTO PlayerStatistics (MatchID, PlayerID, Score, Assists)
-        VALUES (next_ID, , randomScore, randomAssists);
-
-        -- Increment the loop counter
-        SET i = i + 1;
-    END WHILE;
-END @@
-
-DELIMITER ;
-
-
 -- retrivier all player from the given team ID
 DELIMITER $$
 CREATE PROCEDURE GetPlayersByTeam(IN p_Team_ID INT)

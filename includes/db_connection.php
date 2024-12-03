@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "fantasy_sports";
+$servername = "sql5.freemysqlhosting.net";
+$username = "sql5749292";
+$password = "Kwp2F5753w";
+$dbname = "sql5749292";
 
 try {
     $pdo = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
