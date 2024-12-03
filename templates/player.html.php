@@ -26,8 +26,8 @@
 
     <div class="container">
         <div class="player">
-            <br></br>
-            <h2>My Players</h2>
+            <br>
+            <h2><?php echo $_SESSION['role'] === 'admin' ? 'All Players' : 'My Players'; ?></h2>
 
             <!-- Search/See All Form -->
             <form action="<?php echo $search_mode ? 'player.php' : 'player.php?search_mode=1'; ?>" method="POST" style="margin-bottom: 20px;">
@@ -46,7 +46,7 @@
             <?php if (!empty($success)): ?>
                 <p class="success"><?php echo htmlspecialchars($success); ?></p>
             <?php endif; ?>
-            <br></br>
+            <br>
 
             <!-- Player Table -->
             <h3>Players</h3>
@@ -84,7 +84,7 @@
                     <?php endif; ?>
                 </tbody>
             </table>
-            <br></br>
+            <br>
 
             <!-- Player Statistics Table -->
             <h3>Player Statistics</h3>
@@ -96,7 +96,9 @@
                         <th>Game Date</th>
                         <th>Performance Stats</th>
                         <th>Injury Status</th>
-                        <th>Actions</th>
+                        <?php if ($_SESSION['role'] === 'user'): ?>
+                            <th>Actions</th>
+                        <?php endif; ?>
                     </tr>
                 </thead>
                 <tbody>
@@ -108,17 +110,19 @@
                                 <td><?php echo htmlspecialchars($stat['GameDate'] ?? 'N/A'); ?></td>
                                 <td><?php echo htmlspecialchars($stat['PerformanceStats'] ?? 'N/A'); ?></td>
                                 <td><?php echo htmlspecialchars($stat['InjuryStatus'] ?? 'N/A'); ?></td>
-                                <td>
-                                    <form action="player.php" method="POST" style="display: inline;">
-                                        <input type="hidden" name="delete_statistic_id" value="<?php echo htmlspecialchars($stat['Statistic_ID']); ?>">
-                                        <button type="submit" onclick="return confirm('Are you sure you want to delete this statistic?')">Delete</button>
-                                    </form>
-                                </td>
+                                <?php if ($_SESSION['role'] === 'user'): ?>
+                                    <td>
+                                        <form action="player.php" method="POST" style="display: inline;">
+                                            <input type="hidden" name="delete_statistic_id" value="<?php echo htmlspecialchars($stat['Statistic_ID']); ?>">
+                                            <button type="submit" onclick="return confirm('Are you sure you want to delete this statistic?')">Delete</button>
+                                        </form>
+                                    </td>
+                                <?php endif; ?>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
                         <tr>
-                            <td colspan="6">No statistics found.</td>
+                            <td colspan="<?php echo $_SESSION['role'] === 'user' ? '6' : '5'; ?>">No statistics found.</td>
                         </tr>
                     <?php endif; ?>
                 </tbody>

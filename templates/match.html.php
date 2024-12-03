@@ -27,13 +27,15 @@
     <div class="container">
         <div class="match">
             <br></br>
-            <h2>My Matches</h2>
+            <h2>
+                <?php echo ($_SESSION['role'] === 'admin') ? 'All Matches' : 'My Matches'; ?>
+            </h2>
 
             <!-- Error and Success Messages -->
-            <?php if ($error): ?>
+            <?php if (!empty($error)): ?>
                 <p class="error"><?php echo htmlspecialchars($error); ?></p>
             <?php endif; ?>
-            <?php if ($success): ?>
+            <?php if (!empty($success)): ?>
                 <p class="success"><?php echo htmlspecialchars($success); ?></p>
             <?php endif; ?>
 

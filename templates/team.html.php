@@ -26,8 +26,8 @@
 
     <div class="container">
         <div class="team">
-            <br></br>
-            <h2>My Teams</h2>
+            <br>
+            <h2><?php echo $_SESSION['role'] === 'admin' ? 'All Teams' : 'My Teams'; ?></h2>
 
             <!-- Sorting Buttons -->
             <div class="sorting-buttons">
@@ -73,29 +73,29 @@
                     <?php endif; ?>
                 </tbody>
             </table>
-            <br></br>
+            <br>
 
-            <!-- Add Team Form -->
-            <h3>Add a Team</h3>
-            <form action="team.php" method="POST">
-                <div class="inputs">
-                    <input type="text" name="team_name" placeholder="Team Name" required>
-                    <input type="number" name="league_id" placeholder="League ID" required>
-                </div>
-                <button type="submit">Add Team</button>
-            </form>
-
-            <!-- Error and Success Messages -->
-            <?php if ($teamerror): ?>
-                <p class="error"><?php echo htmlspecialchars($teamerror); ?></p>
+            <!-- Add Team Form (Only for Regular Users) -->
+            <?php if ($_SESSION['role'] !== 'admin'): ?>
+                <h3>Add a Team</h3>
+                <form action="team.php" method="POST">
+                    <div class="inputs">
+                        <input type="text" name="team_name" placeholder="Team Name" required>
+                        <input type="number" name="league_id" placeholder="League ID" required>
+                    </div>
+                    <button type="submit">Add Team</button>
+                </form>
+                <?php if ($teamerror): ?>
+                    <p class="error"><?php echo htmlspecialchars($teamerror); ?></p>
+                <?php endif; ?>
+                <?php if ($teamsuccess): ?>
+                    <p class="success"><?php echo htmlspecialchars($teamsuccess); ?></p>
+                <?php endif; ?>
+                <br>
             <?php endif; ?>
-            <?php if ($teamsuccess): ?>
-                <p class="success"><?php echo htmlspecialchars($teamsuccess); ?></p>
-            <?php endif; ?>
-            <br></br>
             
             <!-- Waiver Table -->
-            <h2>My Waivers</h2>
+            <h2><?php echo $_SESSION['role'] === 'admin' ? 'All Waivers' : 'My Waivers'; ?></h2>
             <table border="1">
                 <thead>
                     <tr>
@@ -111,12 +111,12 @@
                     <?php if (!empty($waivers)): ?>
                         <?php foreach ($waivers as $waiver): ?>
                             <tr>
-                                <td><?php echo htmlspecialchars($waiver['Waiver_ID']); ?></td>
-                                <td><?php echo htmlspecialchars($waiver['Team_ID']); ?></td>
-                                <td><?php echo htmlspecialchars($waiver['Player_ID']); ?></td>
-                                <td><?php echo htmlspecialchars($waiver['WaiverOrder']); ?></td>
-                                <td><?php echo htmlspecialchars($waiver['WaiverStatus']); ?></td>
-                                <td><?php echo htmlspecialchars($waiver['WaiverPickupDate']); ?></td>
+                                <td><?php echo htmlspecialchars($waiver['Waiver_ID'] ?? 'N/A'); ?></td>
+                                <td><?php echo htmlspecialchars($waiver['Team_ID'] ?? 'N/A'); ?></td>
+                                <td><?php echo htmlspecialchars($waiver['Player_ID'] ?? 'N/A'); ?></td>
+                                <td><?php echo htmlspecialchars($waiver['WaiverOrder'] ?? 'N/A'); ?></td>
+                                <td><?php echo htmlspecialchars($waiver['WaiverStatus'] ?? 'N/A'); ?></td>
+                                <td><?php echo htmlspecialchars($waiver['WaiverPickupDate'] ?? 'N/A'); ?></td>
                             </tr>
                         <?php endforeach; ?>
                     <?php else: ?>
@@ -126,10 +126,10 @@
                     <?php endif; ?>
                 </tbody>
             </table>
-            <br></br>
+            <br>
 
             <!-- Trade Table -->
-            <h2>My Trades</h2>
+            <h2><?php echo $_SESSION['role'] === 'admin' ? 'All Trades' : 'My Trades'; ?></h2>
             <table border="1">
                 <thead>
                     <tr>
@@ -160,7 +160,7 @@
                     <?php endif; ?>
                 </tbody>
             </table>
-            <br></br>
+            <br>
 
             <!-- Add Trade Form -->
             <h3>Add a Trade</h3>

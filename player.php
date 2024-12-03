@@ -8,8 +8,10 @@ include __DIR__ . '/includes/session_check.php';
 $error = '';
 $success = '';
 
-// Fetch players and player statistics for the current user
+// Fetch the role of the logged-in user
+$role = $_SESSION['role']; 
 $user_id = $_SESSION['user_id'];
+
 $players = [];
 $stats = [];
 
@@ -28,9 +30,59 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_statistic_id']
 // Check if the user is in search mode
 $search_mode = isset($_GET['search_mode']) && $_GET['search_mode'] === '1';
 
-if ($search_mode) {
-    // Handle player and player statistics search based on Team_ID
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search_team_id'])) {
+if ($role === 'admin') {
+    // Admin functionality: Fetch all players and statistics, or filter by Team_ID
+    if ($search_mode && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search_team_id'])) {
+        $search_team_id = $_POST['search_team_id'];
+        if (!empty($search_team_id)) {
+            try {
+                // Fetch players for the given Team_ID
+                $stmt = $pdo->prepare("SELECT * FROM Player WHERE Team_ID = ?");
+                $stmt->execute([$search_team_id]);
+                $players = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                if (empty($players)) {
+                    $error = "No players found for Team ID: $search_team_id.";
+                }
+
+                // Fetch player statistics for the given Team_ID
+                $stmt = $pdo->prepare("
+                    SELECT ps.* 
+                    FROM Player_Statistic ps
+                    INNER JOIN Player p ON ps.Player_ID = p.Player_ID
+                    WHERE p.Team_ID = ?
+                ");
+                $stmt->execute([$search_team_id]);
+                $stats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+                if (empty($stats)) {
+                    $error .= " No statistics found for Team ID: $search_team_id.";
+                }
+            } catch (PDOException $e) {
+                $error .= "Error searching for players or statistics: " . $e->getMessage() . "<br>";
+            }
+        } else {
+            $error = "Please provide a valid Team ID.";
+        }
+    } else {
+        // Fetch all players and statistics for admin
+        try {
+            $stmt = $pdo->query("SELECT * FROM Player");
+            $players = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            $error .= "Error fetching players: " . $e->getMessage() . "<br>";
+        }
+
+        try {
+            $stmt = $pdo->query("SELECT * FROM Player_Statistic");
+            $stats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            $error .= "Error fetching player statistics: " . $e->getMessage();
+        }
+    }
+} else {
+    // User functionality: Fetch players and statistics associated with the user
+    if ($search_mode && $_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['search_team_id'])) {
         $search_team_id = $_POST['search_team_id'];
         if (!empty($search_team_id)) {
             try {
@@ -68,26 +120,24 @@ if ($search_mode) {
         } else {
             $error = "Please provide a valid Team ID.";
         }
-    }
-} else {
-    // Fetch all players for the user
-    try {
-        $stmt = $pdo->prepare("CALL GetPlayerFromUser(?)");
-        $stmt->execute([$user_id]);
-        $players = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        $error .= "Error fetching players: " . $e->getMessage() . "<br>";
-    }
+    } else {
+        // Fetch all players and statistics for the user
+        try {
+            $stmt = $pdo->prepare("CALL GetPlayerFromUser(?)");
+            $stmt->execute([$user_id]);
+            $players = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            $error .= "Error fetching players: " . $e->getMessage() . "<br>";
+        }
 
-    // Fetch all player statistics for the user
-    try {
-        $stmt = $pdo->prepare("CALL GetStatsFromUser(?)");
-        $stmt->execute([$user_id]);
-        $stats = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    } catch (PDOException $e) {
-        $error .= "Error fetching player statistics: " . $e->getMessage();
+        try {
+            $stmt = $pdo->prepare("CALL GetStatsFromUser(?)");
+            $stmt->execute([$user_id]);
+            $stats = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        } catch (PDOException $e) {
+            $error .= "Error fetching player statistics: " . $e->getMessage();
+        }
     }
 }
 
 include __DIR__ . '/templates/player.html.php';
-?>
