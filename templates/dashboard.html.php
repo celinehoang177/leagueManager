@@ -10,9 +10,9 @@
         <div>
             <div class="dashboard">
                 <?php if ($_SESSION['role'] === 'admin'): ?>
-                    <h1 style="color: #fff;"> (Admin) Welcome, <?php echo htmlspecialchars($_SESSION['fullname']); ?>!</h1>
+                    <h1 style="color: #fff;"> (Admin) Welcome to DataVision, <?php echo htmlspecialchars($_SESSION['fullname']); ?>!</h1>
                 <?php else: ?>
-                    <h1 style="color: #fff;">Welcome, <?php echo htmlspecialchars($_SESSION['fullname']); ?>!</h1>
+                    <h1 style="color: #fff;">Welcome to DataVision, <?php echo htmlspecialchars($_SESSION['fullname']); ?>!</h1>
                 <?php endif; ?>
                 <a href="/leagueManager/logout.php" style="color: #fff;">Logout</a>
             </div>

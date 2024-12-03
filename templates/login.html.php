@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <div class="login">
-            <h2>Login</h2>
+            <h2> DataVision Login</h2>
             <form id="loginform" action="/leagueManager/login.php" method="POST">
                 <div class="form">
                     <label for="username">Username</label>

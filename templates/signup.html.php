@@ -8,7 +8,7 @@
 <body>
     <div class="container">
         <div class="signup">
-            <h2>Sign Up</h2>
+            <h2>DataVision Sign Up</h2>
             <form id="signupform" action="/leagueManager/signup.php" method="POST">
                 <div class="form">
                     <label for="fullname">Full Name</label>
