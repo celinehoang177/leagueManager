@@ -98,7 +98,6 @@
 
             <!-- Draft Table -->
             <h2>Drafts</h2>
-            <br></br>
             <?php if (!empty($drafts)): ?>
                 <table border="1">
                     <thead>
