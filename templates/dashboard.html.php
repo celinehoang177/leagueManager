@@ -11,7 +11,6 @@
             <div class="dashboard">
                 <?php if ($_SESSION['role'] === 'admin'): ?>
                     <h1 style="color: #fff;"> (Admin) Welcome, <?php echo htmlspecialchars($_SESSION['fullname']); ?>!</h1>
-                <?php endif; ?>
                 <?php else: ?>
                     <h1 style="color: #fff;">Welcome, <?php echo htmlspecialchars($_SESSION['fullname']); ?>!</h1>
                 <?php endif; ?>
