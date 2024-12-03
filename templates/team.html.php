@@ -78,7 +78,7 @@
             </table>
             <br>
 
-            <!-- Add Team Form (Only for Regular Users) -->
+            <!-- Add Team Form (Only for Users) -->
             <?php if ($_SESSION['role'] !== 'admin'): ?>
                 <h3>Add a Team</h3>
                 <form action="team.php" method="POST">
