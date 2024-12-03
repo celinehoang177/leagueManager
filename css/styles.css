@@ -15,6 +15,11 @@ body {
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
+    scroll-behavior: smooth;
+}
+.bg {
+    background-image: url('https://basketballforever.com/wp-content/uploads/2021/09/Prime-players-scaled.jpg');
+    background-size: cover;
 }
 .login, .signup {
     background: #1d428a;
@@ -122,7 +127,7 @@ button:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
 }
-.team, .league {
+.team, .league, .match {
     text-align: center;
 
 }
