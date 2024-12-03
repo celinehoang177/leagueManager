@@ -134,6 +134,15 @@ button:hover {
     margin-top: 50px;
     padding: 20px;
 }
+.dashboard {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    /* flex-wrap: wrap; */
+    margin-top: 10px;
+    padding-bottom: 20px;
+}
 .sorting-buttons {
     margin-bottom: 10px;
 }
