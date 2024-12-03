@@ -1,6 +1,6 @@
 
 --Create all the table
-CREATE TABLE User (
+CREATE TABLE Users (
     User_ID NUMERIC(8, 0) PRIMARY KEY,
     FullName VARCHAR(50),
     Email VARCHAR(50) UNIQUE NOT NULL,
@@ -8,6 +8,8 @@ CREATE TABLE User (
     Password VARCHAR(64) NOT NULL,
     ProfileSettings JSON
 );
+
+ALTER TABLE Users ADD Role ENUM('admin', 'user') DEFAULT 'user';
 
 CREATE TABLE League (
     League_ID NUMERIC(8, 0) PRIMARY KEY, 
@@ -324,3 +326,15 @@ VALUES
     (8, 6, 7, 602, 702, '2024-08-15'),
     (9, 8, 9, 802, 902, '2024-09-20'),
     (10, 10, 1, 1002, 102, '2024-10-01');
+
+-- Insert Waiver table
+INSERT INTO Waiver (Waiver_ID, Team_ID, Player_ID, WaiverOrder, WaiverStatus, WaiverPickupDate)
+VALUES
+    (1, 101, 1001, 1, 'P', NULL),
+    (2, 102, 1002, 2, 'A', '2024-12-01'),
+    (3, 101, 1003, 3, 'P', NULL),
+    (4, 103, 1001, 1, 'A', '2024-11-30'),
+    (5, 104, 1004, 4, 'P', NULL),
+    (6, 102, 1005, 2, 'A', '2024-12-02'),
+    (7, 105, 1002, 3, 'P', NULL),
+    (8, 103, 1006, 1, 'A', '2024-12-01');
