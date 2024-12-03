@@ -52,7 +52,7 @@
             <h3>Players</h3>
             <table border="1">
                 <thead>
-                    <tr>
+                    <tr class="tablebg">
                         <th>Player ID</th>
                         <th>Full Name</th>
                         <th>Sport</th>
@@ -90,7 +90,7 @@
             <h3>Player Statistics</h3>
             <table border="1">
                 <thead>
-                    <tr>
+                    <tr class="tablebg">
                         <th>Statistic ID</th>
                         <th>Player ID</th>
                         <th>Game Date</th>

@@ -30,7 +30,7 @@
             <h2><?php echo $_SESSION['role'] === 'admin' ? 'All Teams' : 'My Teams'; ?></h2>
 
             <!-- Sorting Buttons -->
-            <div class="sorting-buttons">
+            <div>
                 <form action="team.php" method="GET" style="display: inline-block;">
                     <input type="hidden" name="sort_by" value="Team_ID">
                     <input type="hidden" name="sort_order" value="<?php echo $sort_column === 'Team_ID' && $sort_order === 'ASC' ? 'desc' : 'asc'; ?>">
@@ -47,7 +47,7 @@
             <!-- Team Table -->
             <table border="1">
                 <thead>
-                    <tr>
+                    <tr class="tablebg">
                         <th>Team ID</th>
                         <th>Team Name</th>
                         <th>Total Points</th>
@@ -93,12 +93,13 @@
                 <?php endif; ?>
                 <br>
             <?php endif; ?>
+            <br></br>
             
             <!-- Waiver Table -->
             <h2><?php echo $_SESSION['role'] === 'admin' ? 'All Waivers' : 'My Waivers'; ?></h2>
             <table border="1">
                 <thead>
-                    <tr>
+                    <tr class="tablebg">
                         <th>Waiver ID</th>
                         <th>Team ID</th>
                         <th>Player ID</th>
@@ -126,13 +127,13 @@
                     <?php endif; ?>
                 </tbody>
             </table>
-            <br>
+            <br></br>
 
             <!-- Trade Table -->
             <h2><?php echo $_SESSION['role'] === 'admin' ? 'All Trades' : 'My Trades'; ?></h2>
             <table border="1">
                 <thead>
-                    <tr>
+                    <tr class="tablebg">
                         <th>Trade ID</th>
                         <th>Team 1 ID</th>
                         <th>Team 2 ID</th>
@@ -163,24 +164,26 @@
             <br>
 
             <!-- Add Trade Form -->
-            <h3>Add a Trade</h3>
-            <form action="team.php" method="POST">
-                <div class="inputs">
-                    <input type="hidden" name="add_trade" value="1">
-                    <input type="number" name="team1_id" placeholder="Team 1 ID" required>
-                    <input type="number" name="team2_id" placeholder="Team 2 ID" required>
-                    <input type="number" name="player1_id" placeholder="Player 1 ID" required>
-                    <input type="number" name="player2_id" placeholder="Player 2 ID" required>
-                    <input type="date" name="trade_date" placeholder="Trade Date" required>
-                </div>
-                <button type="submit">Add Trade</button>
-            </form>
-            <!-- Error and Success Messages -->
-            <?php if ($tradeerror): ?>
-                <p class="error"><?php echo htmlspecialchars($tradeerror); ?></p>
-            <?php endif; ?>
-            <?php if ($tradesuccess): ?>
-                <p class="success"><?php echo htmlspecialchars($tradesuccess); ?></p>
+            <?php if ($_SESSION['role'] == 'admin'): ?>
+                <h3>Add a Trade</h3>
+                <form action="team.php" method="POST">
+                    <div class="inputs">
+                        <input type="hidden" name="add_trade" value="1">
+                        <input type="number" name="team1_id" placeholder="Team 1 ID" required>
+                        <input type="number" name="team2_id" placeholder="Team 2 ID" required>
+                        <input type="number" name="player1_id" placeholder="Player 1 ID" required>
+                        <input type="number" name="player2_id" placeholder="Player 2 ID" required>
+                        <input type="date" name="trade_date" placeholder="Trade Date" required>
+                    </div>
+                    <button type="submit">Add Trade</button>
+                </form>
+                <!-- Error and Success Messages -->
+                <?php if ($tradeerror): ?>
+                    <p class="error"><?php echo htmlspecialchars($tradeerror); ?></p>
+                <?php endif; ?>
+                <?php if ($tradesuccess): ?>
+                    <p class="success"><?php echo htmlspecialchars($tradesuccess); ?></p>
+                <?php endif; ?>
             <?php endif; ?>
             <br></br>
             <br></br>

@@ -89,7 +89,7 @@
                 <?php if (!empty($owned_leagues)): ?>
                     <table border="1">
                         <thead>
-                            <tr>
+                            <tr class="tablebg">
                                 <th>League ID</th>
                                 <th>League Name</th>
                                 <th>Type</th>
@@ -119,7 +119,7 @@
                     <?php if (!empty($joined_leagues)): ?>
                         <table border="1">
                             <thead>
-                                <tr>
+                                <tr class="tablebg">
                                     <th>League ID</th>
                                     <th>League Name</th>
                                     <th>Type</th>
@@ -152,12 +152,11 @@
                 </form>
                 <br></br>
 
-                <br></br>
                 <h3>My Drafts</h3>
                 <?php if (!empty($drafts)): ?>
                     <table border="1">
                         <thead>
-                            <tr>
+                            <tr class="tablebg">
                                 <th>Draft ID</th>
                                 <th>League ID</th>
                                 <th>Draft Date</th>

@@ -54,7 +54,7 @@
             <!-- Match Table -->
             <table border="1">
                 <thead>
-                    <tr>
+                    <tr class="tablebg">
                         <th>Match ID</th>
                         <th>Team 1 ID</th>
                         <th>Team 2 ID</th>
